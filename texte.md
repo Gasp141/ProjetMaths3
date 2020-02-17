@@ -1,3 +1,5 @@
+
+
 > **1. Quel théorème du cours nous autorise-t-il à estimer l’espérance conditionnelle par la moyenne empirique de simulations conditionnelles.**
 
 Rappelons le théorême de la limite centrale : 
@@ -21,13 +23,18 @@ La moyenne des simulations conditionelles converge vers l'espérance conditionel
 
 > **2. Rappeler la loi conditionnelle du vecteur des composantes de Z correspondant aux points de discrétisation sans observation, connaissant les valeurs prises par les composantes aux sites d’observation.**
 
-Le vecteur aléatoire des composantes de Z correspondant aux points de discrétisation sans observation, connaissant les valeurs prises par les composantes aux sites d’observation, est une variable aléatoire à densité et admet pour densité
+Le vecteur aléatoire des composantes de $Z$ correspondant aux points de discrétisation sans observation, connaissant les valeurs prises par les composantes aux sites d’observation est noté $Z'$
 
-En notant Y les valeurs prises aux points de discretisation sans observation et X les valeurs prises par les composantes aux sites d'observation. On a alors sans perte de généralité $Z = (X,Y)$ par permutations.
+En notant $Y$ les valeurs prises aux points de discretisation sans observation et $X$ les valeurs prises par les composantes aux sites d'observation. On a alors sans perte de généralité $Z = (X,Y)$ par permutations.
 
-$Y|X=x$ admet une densité $f_{Y|X=x}$
+$Z'= Z|X=x = Y|X=x$ admet une densité $f_{Y|X=x}$
 telle que 
 $$f_{Y|X=x} =\frac{1}{(2\pi)^{k/2}\sqrt{det(CS_Y)}}exp(-\frac{1}{2}(y-\Psi(x))^\perp CS_Y^{-1}(y-\Psi (x)))$$
+
+avec : 
+$$
+CS_Y = C_Y - C_{Y,X}C_X^{-1}C_{X,Y} 
+$$
 
 où on a  :
 
@@ -40,7 +47,7 @@ $$
 
 Si Y est un vecteur de composantes gaussiennes indépendantes, toutes d'esperance nulle et de variance 1,  alors on peut caractériser cette variable aléatoire par sa fonction caractéristiques $\Phi_Y(u) =e^{i<u|m>-\frac{1}{2} <u|I_n u>}$
 
-Or d'après le cours de Probabilté $\Phi_Z(u) = \Phi_{m+RY}(u) = e^{i<u|m>}\Phi_Y(R^\perp u)$
+Or d'après le cours de Probabilté $III$ $\Phi_Z(u) = \Phi_{m+RY}(u) = e^{i<u|m>}\Phi_Y(R^\perp u)$
 
 Ce qui dans notre cas nous donne : 
 
@@ -48,7 +55,7 @@ $$\Phi_Z(u) = \Phi_{m+RY}(u) = e^{i<u|m>}\Phi_Y(R^\perp u)$$
 
 Donc Z suit la loi qui a pour fonction caractéristique : 
 $$
-\Phi_Z(u) = \Phi_{m+RY}(u) = e^{i<u|m>-\frac{1}{2} <R^\perp u|I_n R^\perp u>}
+\Phi_Z(u) = \Phi_{m+RY}(u) = e^{i<u|m>-\frac{1}{2} <R^\perp u| R^\perp u>}
 $$
 
 
@@ -56,14 +63,23 @@ $$
 
 On en déduit donc qu'en utilisant une matrice R bien choisie on peut arriver simuler un vecteur gaussien conditionnel
 
-En effet si on choisit la transformée de Cholesky de la matrice de covariance conditionelle C', que l'on notera R:
-En posant Z'  = m +RY où Y = (Y1, . . . , Yp) est un vecteur de composantes gaussiennes indépendantes, toutes d’espérance nulle et de variance 1
+En effet si on choisit la transformée de Cholesky de la matrice de covariance conditionelle $CS_Y$, que l'on notera $R$ :
+En posant $Z'  = m +RY$ où $Y = (Y1, . . . , Yp)$ est un vecteur de composantes gaussiennes indépendantes, toutes d’espérance nulle et de variance 1
 
-$\Phi_Z'(u) = e^{i<u|m> -\frac{1}{2}<R^\perp u|R^\perp u> }
- =  e^{i< u|m> -\frac{1}{2} <u|Cu>}$ ( par symétrie de R ) 
+$\Phi_{Z'}(u) = e^{i<u|m> -\frac{1}{2}<R^\perp u|R^\perp u> }
+ =  e^{i< u|m> -\frac{1}{2} <u|CS_Yu>}$ ( par symétrie de R ) 
  
-$ \Phi_Z'(u) = e^{i<u| m>-\frac{1}{2} <u|Cu>}$
+$$
+\Phi_{Z'}(u) = e^{i<u| m>-\frac{1}{2} <u|CS_Yu>}
+$$
 
-Donc Z' est une variable aléatoire à densité, Z' est un un vecteur gaussien
+Donc $Z'$ est une variable aléatoire à densité, $Z'$ est un un vecteur gaussien
 
-De plus Z'est de même loi que la variable aléatoire gaussienne $Z|Z(x_1, ...,x_i) = (z_1, ..., z_i)$ par identification des fonctions caractéristiqes
+De plus Z'est de même loi que la variable aléatoire gaussienne $Y|X=x$ par identification des fonctions caractéristiques.
+
+On peut donc proposer un algorithme de simulation : 
+
+### Algorithme de simulation
+--------
+
+- 
