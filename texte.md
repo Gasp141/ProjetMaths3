@@ -2,13 +2,28 @@
 
 Rappelons le théorême de la limite centrale : 
 
-Soit $X_n$ une suite de variable aléatoire indépendante 
+Si les $Z_n$ sont des variables aléatoires réelles, indépendantes et de même loi, de carré intégrable, d'espérance $m$ et de variance $\sigma^2 >0$, alors les variables $\frac{S_n -nm}{\sigma \sqrt{n}}$ convergent en loi vers une variable aléatoire de loi $\N(0,1)$.
+
+En d'autres termes, $\sqrt{n}(M_n - m)$ converge vers une variable normale de loi $\N(0,\sigma^2)$
+
+On en déduit que $n^\alpha (\frac{S_n}{n} - m)$ converge vers 0 (resp. $+\infty$) en probabilité lorsque $\alpha < 1/2$ (resp. $\alpha > 1/2$)
+
+En particulier pour $\alpha = 0$ : 
+$$\frac{S_n}{n} \to^\mathbb{P} m$$
+
+Soit $(\Omega,\mathcal{A},\mathbb{P}_Z)$ l'espace probabilisé. Posons $Z_n$ le resultat du  n-ème tirage avec remise d'un élément de cet espace. Les $(Z_n)_\mathbb{N}$ vérifient les ocnditions d'application du **théorême de la limite centrale**. 
+
+
+
+D'où en considérant le vecteur aléatoire conditionnel $Y|X=x$. En notant Y les valeurs prises aux points de discretisation sans observation et X les valeurs prises par les composantes aux sites d'observation. On a alors sans perte de généralité $Z = (X,Y)$ par permutations.
+
+La moyenne des simulations conditionelles converge vers l'espérance conditionelle. **Il est donc approprié de l'approcher de cette façon.**
 
 > **2. Rappeler la loi conditionnelle du vecteur des composantes de Z correspondant aux points de discrétisation sans observation, connaissant les valeurs prises par les composantes aux sites d’observation.**
 
 Le vecteur aléatoire des composantes de Z correspondant aux points de discrétisation sans observation, connaissant les valeurs prises par les composantes aux sites d’observation, est une variable aléatoire à densité et admet pour densité
 
-En notant Y les valeurs prises aux points de discretisation sans observation et X les valeurs prises par les composantes aux sites d'observation
+En notant Y les valeurs prises aux points de discretisation sans observation et X les valeurs prises par les composantes aux sites d'observation. On a alors sans perte de généralité $Z = (X,Y)$ par permutations.
 
 $Y|X=x$ admet une densité $f_{Y|X=x}$
 telle que 
