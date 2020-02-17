@@ -1,5 +1,3 @@
-
-
 > **1. Quel théorème du cours nous autorise-t-il à estimer l’espérance conditionnelle par la moyenne empirique de simulations conditionnelles.**
 
 Rappelons le théorême de la limite centrale : 
@@ -82,4 +80,9 @@ On peut donc proposer un algorithme de simulation :
 ### Algorithme de simulation
 --------
 
-- 
+- Fixer les vealeurs aux points d'observations 
+- Calculer la matrice de covariance conditionelle
+- Calculer la transformée de Cholesky
+- Simuler Y un vecteur gaussien centré réduit de composantes indépendantes
+- Simuler Z par transformation affine
+- Recommencer
